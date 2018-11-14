@@ -16,7 +16,7 @@
  <div class = "image">
  	<img src = "img/parks/${park.parkCode}.jpg" style = "width:400px; height:200px"/>
  </div>
- 
+ <div class = "details">
 	 <c:out value="${park.parkCode}"></c:out>
 	 <c:out value="${park.parkName}"></c:out>
 	 <c:out value="${park.state}"></c:out>
@@ -32,8 +32,14 @@
 	 <c:out value="${park.parkDescription}"></c:out>
 	 <c:out value="${park.entryFee}"></c:out>
 	 <c:out value="${park.numberOfAnimalSpecies}"></c:out>			 
- 
- 
+ </div>
+ <div class = "weather">
+
+
+
+
+
+</div>
  
  </body>
 </html>

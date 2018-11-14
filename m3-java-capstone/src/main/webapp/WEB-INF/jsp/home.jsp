@@ -14,7 +14,6 @@
 <body>
 <c:set var="detailPageURL" value="/detailPage"/>
  
-
  <form action = "${detailPageURL}" method = "GET">
 	
 	<c:forEach var = "park" items = "${parkList}">
