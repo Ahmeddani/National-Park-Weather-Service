@@ -3,7 +3,7 @@ package com.techelevator.model;
 public class Weather {
 
 private String parkCode;
-private int fiveDayForcastValue;
+private int fiveDayForecastValue;
 private int low;
 private int high;
 private String forecast;
@@ -14,11 +14,11 @@ public String getParkCode() {
 public void setParkCode(String parkCode) {
 	this.parkCode = parkCode;
 }
-public int getFiveDayForcastValue() {
-	return fiveDayForcastValue;
+public int getFiveDayForecastValue() {
+	return fiveDayForecastValue;
 }
 public void setFiveDayForcastValue(int fiveDayForcastValue) {
-	this.fiveDayForcastValue = fiveDayForcastValue;
+	this.fiveDayForecastValue = fiveDayForcastValue;
 }
 public int getLow() {
 	return low;

@@ -24,7 +24,7 @@ public class JDBCWeatherDao implements WeatherDao{
 	@Override
 	public List<Weather> getWeatherByParkCode(String parkCode) {
 		List<Weather> forecastList = new ArrayList<>();
-		String sqlSelectWeather = "select * from weather where parkcode = ?";
+		String sqlSelectWeather = "select * from weather where parkcode = ? order by fivedayforecastvalue";
 		SqlRowSet result = jdbcTemplate.queryForRowSet(sqlSelectWeather, parkCode);
 		
 		while (result.next()) {

@@ -35,11 +35,55 @@
  </div>
  <div class = "weather">
 
+<c:forEach var  = "forecast" items = "${forecast}">
 
+	<c:choose>
+	<c:when test="${forecast.fiveDayForecastValue == 1}">
+	
+	<div class = "today">
+	   <c:choose>
+		<c:when test="${forecast.forecast == 'partly cloudy'}">
+			<img src = "img/weather/partlyCloudy.png"/>
+		</c:when>
+		<c:otherwise>
+		 	<img src = "img/weather/${forecast.forecast}.png"/>
+		</c:otherwise>
+	</c:choose>
+	<c:out value = "${forecast.high}"/>
+	 <c:out value = "${forecast.low}"/>
+	 <!-- recommendations here -->
+	</div>
+	</c:when>
+	<c:otherwise>
+	<div class = "otherDays">
+	<c:choose>
+		<c:when test="${forecast.forecast == 'partly cloudy'}">
+			<img src = "img/weather/partlyCloudy.png"/>
+		</c:when>
+		<c:otherwise>
+		 	<img src = "img/weather/${forecast.forecast}.png"/>
+		</c:otherwise>
+	</c:choose>
+	<c:out value = "${forecast.high}"/>
+	 <c:out value = "${forecast.low}"/>
+	 <!-- recommendations here -->
+	</div>
+	</c:otherwise>
+	
+	</c:choose>
 
-
-
+</c:forEach>
 </div>
- 
+
+<form action="/detailPage" method = "POST">
+<label for="choice">Fahrenheit / Celcius? : </label>
+<select name = "choice" id = "choice">
+  <option value = "f">Fahrenheit</option>
+  <option value = "c">Celsius</option>
+</select>
+
+<input type = "submit" name = "submit" value = "Change Temp"/>
+</form>
+
  </body>
 </html>

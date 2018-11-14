@@ -4,20 +4,29 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.techelevator.dao.ParkDao;
 import com.techelevator.dao.WeatherDao;
 import com.techelevator.model.Park;
+import com.techelevator.model.Survey;
 import com.techelevator.model.Weather;
 
+
 @Controller
-//@SessionAttributes("temperature")
+@SessionAttributes("temperature")
 public class ParkController {
 
 @Autowired
@@ -43,5 +52,40 @@ public String displayDetailPage(HttpServletRequest request, @RequestParam String
 	request.setAttribute("park", park);
 	request.setAttribute("forecast", forecast);
 	return "detailPage";
+}
+
+@RequestMapping(path = "/detailPage", method = RequestMethod.POST)
+public String changeTemp(ModelMap map, @RequestParam String id) {
+	
+	Park park = new Park();
+	List<Weather> forecast = weatherDao.getWeatherByParkCode(id.toUpperCase());
+	for(Weather weather: forecast) {
+		int oldHigh = weather.getHigh();
+		int oldLow = weather.getLow();
+		weather.setHigh(((oldHigh-32)*5)/9);
+		weather.setLow(((oldLow-32)*5)/9);
+	}
+	
+    map.addAttribute("temperature", forecast);
+    map.addAttribute("temperature", park);
+	return "m3-java-capstone/detailPage";
+}
+
+@RequestMapping(path = "/survey", method = RequestMethod.GET)
+public String displaySurveyPage(HttpServletRequest request, Model model) {
+	
+	if (!model.containsAttribute("survey")) {
+		model.addAttribute("survey", new Survey());
+	}
+	return "survey";
+}
+
+@RequestMapping(path = "/survey", method = RequestMethod.POST)
+public String validateSurvey(@Valid @ModelAttribute("survey") Survey survey, BindingResult result, RedirectAttributes attr) {
+	
+	if (result.hasErrors()) {
+		return "survey";
+	}
+	return "redirect:/favoriteParksPage";
 }
 }
