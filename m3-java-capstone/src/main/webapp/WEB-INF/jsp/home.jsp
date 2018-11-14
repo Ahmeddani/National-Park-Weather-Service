@@ -1,7 +1,8 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
-<c:set var="pageTitle" value="home"/>
-<c:import url ="/WEB-INF/jsp/common/header.jspf"/>
+<div>
+
+<c:import url ="/WEB-INF/jsp/common/header.jsp"/>
  <form action = "${detailPageURL}" method = "GET">
 	<c:forEach var = "park" items = "${parkList}">
 	  <c:url var = "detailPageURL" value = "/detailPage">
@@ -17,4 +18,5 @@
 	
 	</c:forEach> 
  </form> 
+ </div>
 <c:import url = "/WEB-INF/jsp/common/footer.jspf"/>
