@@ -1,9 +1,22 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<!DOCTYPE html>
 
-<c:set var="pageTitle" value="home"/>
-<c:import url ="/WEB-INF/jsp/common/header.jspf"/>
+<html>
+<img src="img/logo.png" alt="national park logo" style="width:350px; height:150px;"/>
+<nav>
+        <ul>
+            <li><a href="home">Home</a></li>
+            <li><a href="survey">Survey</a></li>
+        </ul>
+        
+    </nav>
+<body>
+<c:set var="detailPageURL" value="/detailPage"/>
+ 
  <form action = "${detailPageURL}" method = "GET">
+	
 	<c:forEach var = "park" items = "${parkList}">
+	 
 	  <c:url var = "detailPageURL" value = "/detailPage">
 		<c:param name="id" value = "${park.parkCode}"></c:param>
 	  </c:url>
@@ -16,5 +29,6 @@
 		</div>
 	
 	</c:forEach> 
- </form> 
-<c:import url = "/WEB-INF/jsp/common/footer.jspf"/>
+ </form>
+ </body>
+</html>
