@@ -1,0 +1,100 @@
+body {
+    padding-top: 30px;
+    padding-bottom: 20px;
+    font-family: sans-serif;
+    background-color: green;
+}
+
+header {
+	margin: 10px 38px;
+}
+
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+}
+nav {
+	margin-top: 50px;
+	margin-bottom: 50px;
+
+}
+
+nav ul {
+	width: 100%;
+
+}
+
+nav ul li {
+	float: left;
+	margin-right: 20px;
+	background-color: white;
+	border-radius: 8px;
+	list-style: none;
+	text-align: center;
+	width: 200px;
+	padding-top: 5px;
+	color: white;
+}
+
+nav:after {
+	clear: both;
+}
+
+li a:hover {
+	text-decoration: underline;
+}
+
+#main-content {
+	background-color: white;
+	color: black;
+	border-radius: 10px;
+	width: 1100px;
+	margin: 10px 38px;
+	min-height: 400px;
+	padding-top: 10px;
+}
+.copyright {
+	color: white;
+	text-align: center;
+}
+.parkpic {
+	display:flex;
+}
+
+.park {
+	display:inline-flex;
+	padding: 8px;
+}
+
+#park {
+	border-radius: 8px;
+}
+#parkinfo {
+	width: 500px;
+	margin: 20px;
+}
+
+
+
+
+
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+.error {
+	color: red;
+}
+
+.white {
+	background-color: white;
+}
+
+.red {
+	background-color: red;
+}
+

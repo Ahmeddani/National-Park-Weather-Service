@@ -1,18 +1,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-<!DOCTYPE html>
-
-
-<html>
-<img src="img/logo.png" alt="national park logo" style="width:350px; height:150px;"/>
-<nav>
-        <ul>
-            <li><a href="home">Home</a></li>
-            <li><a href="survey">Survey</a></li>
-        </ul>
-        
-    </nav>
-<body>
+<c:import url="/WEB-INF/common/header.jsp" />
 
 <div class="modal-dialog"> 
 				<div class="loginmodal-container">
@@ -48,3 +36,5 @@
 				<br>
 				<form:button value = "submit">Submit</form:button>
 				</form:form>
+				
+<c:import url="/WEB-INF/common/footer.jsp" />

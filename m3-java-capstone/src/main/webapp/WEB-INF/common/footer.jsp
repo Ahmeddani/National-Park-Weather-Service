@@ -1,4 +1,4 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
-
-	</body>
+<p class="copyright">Copyright Solar System Geek Inc 2015</p>
+</section>
+ </body>
 </html>

@@ -1,17 +1,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<!DOCTYPE html>
+<c:import url="/WEB-INF/common/header.jsp" />
 
 
-<html>
-<img src="img/logo.png" alt="national park logo" style="width:350px; height:150px;"/>
-<nav>
-        <ul>
-            <li><a href="home">Home</a></li>
-            <li><a href="survey">Survey</a></li>
-        </ul>
-        
-    </nav>
-<body>
 <c:set var="detailPageURL" value="/detailPage"/>
  
  <form action = "${detailPageURL}" method = "GET">
@@ -22,16 +12,21 @@
 		<c:param name="id" value = "${park.parkCode}"></c:param>
 	  </c:url>
 		
-		<div>
-			 <a href= "${detailPageURL }"><img src = "img/parks/${park.parkCode}.jpg"/></a>
-			 <a href= "${detailPageURL }"><c:out value="${park.parkName}"></c:out></a>
-			 <c:out value="${park.state}"></c:out>
-			 <c:out value="${park.parkDescription}"></c:out>
+		<div class="park">
+			 <div class="parkpic">
+			 	<a href= "${detailPageURL }"><img src = "img/parks/${park.parkCode}.jpg" id="park"/></a>
+			 </div>
+			 <div id="parkinfo">
+			 	<a href= "${detailPageURL }"><h3><c:out value="${park.parkName}"></c:out></h3></a>
+			 	<br>
+			 	<c:out value="${park.state}"></c:out>
+			 	<c:out value="${park.parkDescription}"></c:out>
+			 </div>
 		</div>
 	
 	</c:forEach> 
 
  </form>
- </body>
-</html>
 
+
+<c:import url="/WEB-INF/common/footer.jsp" />

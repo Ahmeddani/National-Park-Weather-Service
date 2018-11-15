@@ -40,6 +40,15 @@ private WeatherDao weatherDao;
 @Autowired
 private SurveyDao surveyDao;
 
+@RequestMapping(path = "/", method = RequestMethod.GET)
+public String displayStartPage(HttpServletRequest request) {
+	
+	List<Park> parkList = new ArrayList<Park>();
+	parkList = parkDao.getAllParks();
+	request.setAttribute("parkList", parkList);
+	return "home";
+}
+
 @RequestMapping(path = "/home", method = RequestMethod.GET)
 public String displayHomePage(HttpServletRequest request) {
 	

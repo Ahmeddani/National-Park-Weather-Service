@@ -1,16 +1,8 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<!DOCTYPE html>
+<c:import url="/WEB-INF/common/header.jsp" />
 
-<html>
-<img src="img/logo.png" alt="national park logo" style="width:350px; height:150px;"/>
-<nav>
-        <ul>
-            <li><a href="home">Home</a></li>
-            <li><a href="survey">Survey</a></li>
-        </ul>
-        
-    </nav>
-<body>
+
+
 <c:set var="pageTitle" value="detailPage"/>
 
  <div class = "image">
@@ -85,5 +77,4 @@
 <input type = "submit" name = "submit" value = "Change Temp"/>
 </form>
 
- </body>
-</html>
+<c:import url="/WEB-INF/common/footer.jsp" />
