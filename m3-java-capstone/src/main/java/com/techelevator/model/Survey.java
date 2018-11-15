@@ -17,6 +17,7 @@ private String email;
 @NotBlank(message = "Email is required")
 private String state;
 private String activityLevel;
+private int surveyCount;
 public int getSurveyId() {
 	return surveyId;
 }
@@ -46,6 +47,12 @@ public String getActivityLevel() {
 }
 public void setActivityLevel(String activityLevel) {
 	this.activityLevel = activityLevel;
+}
+public int getSurveyCount() {
+	return surveyCount;
+}
+public void setSurveyCount(int surveyCount) {
+	this.surveyCount = surveyCount;
 }
 
 

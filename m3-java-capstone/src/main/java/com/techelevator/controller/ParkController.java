@@ -2,6 +2,7 @@ package com.techelevator.controller;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
@@ -19,6 +20,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.techelevator.dao.ParkDao;
+import com.techelevator.dao.SurveyDao;
 import com.techelevator.dao.WeatherDao;
 import com.techelevator.model.Park;
 import com.techelevator.model.Survey;
@@ -31,8 +33,12 @@ public class ParkController {
 
 @Autowired
 private ParkDao parkDao;
+
 @Autowired
 private WeatherDao weatherDao;
+
+@Autowired
+private SurveyDao surveyDao;
 
 @RequestMapping(path = "/home", method = RequestMethod.GET)
 public String displayHomePage(HttpServletRequest request) {
@@ -81,11 +87,28 @@ public String displaySurveyPage(HttpServletRequest request, Model model) {
 }
 
 @RequestMapping(path = "/survey", method = RequestMethod.POST)
-public String validateSurvey(@Valid @ModelAttribute("survey") Survey survey, BindingResult result, RedirectAttributes attr) {
+public String validateSurvey(@Valid @ModelAttribute("survey") Survey survey, BindingResult result, RedirectAttributes attr,
+		@RequestParam (name = "parkCode") String parkName, @RequestParam String email, @RequestParam String state, @RequestParam String activityLevel) {
 	
 	if (result.hasErrors()) {
 		return "survey";
 	}
-	return "redirect:/favoriteParksPage";
+	survey = new Survey();
+	Park park = parkDao.getParkByName(parkName);
+	survey.setParkCode(park.getParkCode());
+	survey.setEmail(email);
+	survey.setState(state);
+	survey.setActivityLevel(activityLevel);
+	
+	surveyDao.saveSurvey(survey);
+	return "favoriteParksPage";
 }
+@RequestMapping(path = "/favoriteParksPage", method = RequestMethod.GET)
+public String displayFavoriteParks(HttpServletRequest request) {
+	
+	Map<Park, Integer> favoritesMap = surveyDao.getFavoriteParksByNumberOfSurveys();
+	request.setAttribute("favoriteParks", favoritesMap);
+	return "favoriteParksPage";
+}
+
 }
