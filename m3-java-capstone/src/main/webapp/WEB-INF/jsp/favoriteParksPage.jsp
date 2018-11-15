@@ -5,7 +5,7 @@
 <c:forEach var = "park" items = "${favoriteParks}">
 
 	<div>
-		<img alt="park image" src="img/parks/${park.key.parkCode}.jsp">
+		<img alt="park image" src="img/parks/${park.key.parkCode}.jpg">
 	
 	</div>
 	<div>

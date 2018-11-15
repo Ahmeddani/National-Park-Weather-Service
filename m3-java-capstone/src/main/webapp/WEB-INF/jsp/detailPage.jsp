@@ -44,6 +44,62 @@
 	<c:out value = "${forecast.high}"/>
 	 <c:out value = "${forecast.low}"/>
 	 <!-- recommendations here -->
+	 
+	 <c:choose>
+	  <c:when test="${forecast.forecast == 'snow'}">
+	   <c:set var = "recommendation" value = "Pack snow shoes!"/>
+	  </c:when>
+	   <c:when test="${forecast.forecast == 'rain'}">
+	   <c:set var = "recommendation" value = "Pack rain gear and wear waterproof shoes"/>
+	  </c:when>
+	   <c:when test="${forecast.forecast == 'thunderstorms'}">
+	   <c:set var = "recommendation" value = "Seek shelter and avoid hiking and exposed ridges"/>
+	  </c:when>
+	   <c:when test="${forecast.forecast == 'sunny'}">
+	   <c:set var = "recommendation" value = "Pack sunblock"/>
+	  </c:when>
+	   
+	    <c:otherwise>
+	  		<c:set var = "recommendation" value = "Wonderful weather"/>
+	 	 </c:otherwise>
+	 	 </c:choose>
+	 	
+	 	 <c:choose>
+		   <c:when test="${forecast.high > 75}">
+		   <c:set var = "recommendation2" value = "Bring an extra gallon of water"/>
+		  </c:when>
+		  <c:when test="${(forecast.high - forecast.low) > 20}">
+		   <c:set var = "recommendation2" value = "Wear breathable layers"/>
+		  </c:when>
+		  <c:when test="${forecast.low < 20}">
+		   <c:set var = "recommendation2" value = "Warning: extremely fridged temperature, exposure could be harmful!"/>
+		  </c:when>
+		  	<c:otherwise>
+		   	<c:set var = "recommendation2" value = "enjoy!"/>
+		  	</c:otherwise>
+		  </c:choose>
+		  	 
+		  <c:if test="${scale == 'c'}">
+		 	  <c:choose>
+		   <c:when test="${forecast.high > 24}">
+		   <c:set var = "recommendation2" value = "Bring an extra gallon of water"/>
+		  </c:when>
+		  <c:when test="${(forecast.high - forecast.low) > 11}">
+		   <c:set var = "recommendation2" value = "Wear breathable layers"/>
+		  </c:when>
+		  <c:when test="${forecast.low < -6}">
+		   <c:set var = "recommendation2" value = "Warning: extremely fridged temperature, exposure could be harmful!"/>
+		  </c:when>
+		 	 <c:otherwise>
+		   	<c:set var = "recommendation2" value = "enjoy!"/>
+		  	</c:otherwise>
+		 	 
+
+	 </c:choose>
+	 </c:if>
+	 
+	 <c:out value="${recommendation }"></c:out><br>
+	 <c:out value="${recommendation2 }"></c:out><br>
 	</div>
 	</c:when>
 	<c:otherwise>
@@ -67,7 +123,9 @@
 </c:forEach>
 </div>
 
-<form action="/detailPage" method = "POST">
+<form action="detailPage" method = "POST">
+<input type="hidden" name="id" id="id" value="${park.parkCode}" />
+
 <label for="choice">Fahrenheit / Celcius? : </label>
 <select name = "choice" id = "choice">
   <option value = "f">Fahrenheit</option>

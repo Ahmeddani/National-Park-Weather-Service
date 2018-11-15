@@ -28,7 +28,7 @@ import com.techelevator.model.Weather;
 
 
 @Controller
-@SessionAttributes("temperature")
+@SessionAttributes({"temperature", "scale"})
 public class ParkController {
 
 @Autowired
@@ -40,16 +40,7 @@ private WeatherDao weatherDao;
 @Autowired
 private SurveyDao surveyDao;
 
-@RequestMapping(path = "/", method = RequestMethod.GET)
-public String displayStartPage(HttpServletRequest request) {
-	
-	List<Park> parkList = new ArrayList<Park>();
-	parkList = parkDao.getAllParks();
-	request.setAttribute("parkList", parkList);
-	return "home";
-}
-
-@RequestMapping(path = "/home", method = RequestMethod.GET)
+@RequestMapping(path = {"/home","/"}, method = RequestMethod.GET)
 public String displayHomePage(HttpServletRequest request) {
 	
 	List<Park> parkList = new ArrayList<Park>();
@@ -58,11 +49,17 @@ public String displayHomePage(HttpServletRequest request) {
 	return "home";
 }
 
+@SuppressWarnings("unchecked")
 @RequestMapping(path = "/detailPage", method = RequestMethod.GET)
-public String displayDetailPage(HttpServletRequest request, @RequestParam String id) {
+public String displayDetailPage(HttpServletRequest request, @RequestParam String id, ModelMap map) {
 	
 	Park park = new Park();
 	List<Weather> forecast = weatherDao.getWeatherByParkCode(id.toUpperCase());
+	if (map.containsAttribute("temperature")) {
+		
+		forecast = (List<Weather>) map.get("temperature");
+	}
+	
 	park = parkDao.getParkById(id.toUpperCase());
 	request.setAttribute("park", park);
 	request.setAttribute("forecast", forecast);
@@ -70,21 +67,26 @@ public String displayDetailPage(HttpServletRequest request, @RequestParam String
 }
 
 @RequestMapping(path = "/detailPage", method = RequestMethod.POST)
-public String changeTemp(ModelMap map, @RequestParam String id) {
+public String changeTemp(ModelMap map, @RequestParam String id, @RequestParam String choice) {
 	
-	Park park = new Park();
+
 	List<Weather> forecast = weatherDao.getWeatherByParkCode(id.toUpperCase());
-	for(Weather weather: forecast) {
-		int oldHigh = weather.getHigh();
-		int oldLow = weather.getLow();
-		weather.setHigh(((oldHigh-32)*5)/9);
-		weather.setLow(((oldLow-32)*5)/9);
+	String scale = "f";
+	if(choice.equals("c")) {
+		for(Weather weather: forecast) {
+			int oldHigh = weather.getHigh();
+			int oldLow = weather.getLow();
+			weather.setHigh(((oldHigh-32)*5)/9);
+			weather.setLow(((oldLow-32)*5)/9);
+		}
+		scale = "c";
 	}
 	
     map.addAttribute("temperature", forecast);
-    map.addAttribute("temperature", park);
-	return "m3-java-capstone/detailPage";
+    map.addAttribute("scale", scale);
+	return "redirect:/detailPage?id="+id;
 }
+
 
 @RequestMapping(path = "/survey", method = RequestMethod.GET)
 public String displaySurveyPage(HttpServletRequest request, Model model) {
@@ -110,7 +112,7 @@ public String validateSurvey(@Valid @ModelAttribute("survey") Survey survey, Bin
 	survey.setActivityLevel(activityLevel);
 	
 	surveyDao.saveSurvey(survey);
-	return "favoriteParksPage";
+	return "redirect:/favoriteParksPage";
 }
 @RequestMapping(path = "/favoriteParksPage", method = RequestMethod.GET)
 public String displayFavoriteParks(HttpServletRequest request) {

@@ -1,8 +1,10 @@
 package com.techelevator.dao;
 
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.TreeMap;
 
 import javax.sql.DataSource;
 
@@ -29,11 +31,11 @@ public class JDBCSurveyDao implements SurveyDao{
 	
 	@Override
 	public Map<Park, Integer> getFavoriteParksByNumberOfSurveys() {
-		Map<Park, Integer> favoriteParksMap = new HashMap<Park, Integer>();
-		String sqlSelectFavoriteParks = "select parkcode, count(*) from survey GROUP by parkcode order by count desc, parkcode";
+		Map<Park, Integer> favoriteParksMap = new LinkedHashMap<Park, Integer>();
+		String sqlSelectFavoriteParks = "select parkcode, count(*) from survey_result GROUP by parkcode order by count desc, parkcode";
 		SqlRowSet result = jdbcTemplate.queryForRowSet(sqlSelectFavoriteParks);
 		while (result.next()) {
-			Park park = parkDao.getParkById(result.getString("parkcode"));
+			Park park = parkDao.getParkById(result.getString("parkcode").toUpperCase());
 			String parkCode = park.getParkCode().toLowerCase();
 			park.setParkCode(parkCode);
 			favoriteParksMap.put(park, result.getInt("count"));
