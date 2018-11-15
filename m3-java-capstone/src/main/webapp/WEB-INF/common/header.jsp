@@ -23,4 +23,4 @@
 			</ul>
 		</nav>
 	<br>
-	<section id="main-content">
+	<section class="main-content">
