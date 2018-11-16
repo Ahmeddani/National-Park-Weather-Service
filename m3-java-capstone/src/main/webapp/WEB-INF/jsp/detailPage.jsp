@@ -11,34 +11,34 @@
  
  <div class = "details">
 	 <h1><c:out value="${park.parkName}"></c:out></h1>
-	 <p>
-	 	Park Code: <c:out value="${park.parkCode}"></c:out>
+	 
+	 	<strong>Park Code:</strong> <c:out value="${park.parkCode}"></c:out>
 	 <br>
-	 	Location: <c:out value="${park.state}"></c:out>
+	 	<strong>Location:</strong> <c:out value="${park.state}"></c:out>
 	 <br>
-	 	Acreage: <c:out value="${park.acreage}"></c:out>
+	 	<strong>Acreage:</strong> <c:out value="${park.acreage}"></c:out>
 	 <br>
-	 	Elevation in Feet: <c:out value="${park.elevationInFeet}"></c:out>
+	 	<strong>Elevation in Feet:</strong> <c:out value="${park.elevationInFeet}"></c:out>
 	 <br>
-	 	Miles of Trail: <c:out value="${park.milesOfTrail}"></c:out>
+	 	<strong>Miles of Trail:</strong> <c:out value="${park.milesOfTrail}"></c:out>
 	 <br>
-	 	Number of Campsites: <c:out value="${park.numberOfCampsites}"></c:out>
+	 	<strong>Number of Campsites:</strong> <c:out value="${park.numberOfCampsites}"></c:out>
 	 <br>
-	 	Climate: <c:out value="${park.climate}"></c:out>
+	 	<strong>Climate:</strong> <c:out value="${park.climate}"></c:out>
 	 <br>
-	 	Year Founded: <c:out value="${park.yearFounded}"></c:out>
+	 	<strong>Year Founded:</strong> <c:out value="${park.yearFounded}"></c:out>
 	 <br>
-	 	Annual Visitor Count: <c:out value="${park.annualVisitorCount}"></c:out>
+	 	<strong>Annual Visitor Count:</strong> <c:out value="${park.annualVisitorCount}"></c:out>
 	 <br>
-	 	Inspirational Quote: <c:out value="${park.inspirationalQuote}"></c:out>
-	 	 By: <c:out value="${park.inspirationalQuoteSource}"></c:out>
+	 	<strong>Inspirational Quote:</strong> <c:out value="${park.inspirationalQuote}"></c:out>
+	 	 <em>  By: <c:out value="${park.inspirationalQuoteSource}"></c:out> </em>
 	 <br>
-	 	Number of Animal Species: <c:out value="${park.numberOfAnimalSpecies}"></c:out>
+	 	<strong>Number of Animal Species:</strong> <c:out value="${park.numberOfAnimalSpecies}"></c:out>
 	 <br>
-	 	Park Entry Fee: $<c:out value="${park.entryFee}"></c:out>
+	 	<strong>Park Entry Fee:</strong> $<c:out value="${park.entryFee}"></c:out>
 	 <br>
-	 	Park Description: <p><c:out value="${park.parkDescription}"></c:out></p>	
-	 </p>		 
+	 	<strong>Park Description:</strong> <p><c:out value="${park.parkDescription}"></c:out></p>	
+	 		 
  </div>
 <div class="temps"><h2>FIVE DAY WEATHER FORECAST</h2></div>
  
