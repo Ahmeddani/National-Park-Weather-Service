@@ -14,7 +14,7 @@ private String parkCode;
 @Valid
 private String email;
 
-@NotBlank(message = "Email is required")
+@NotBlank(message = "State of Residence is required")
 private String state;
 private String activityLevel;
 private int surveyCount;

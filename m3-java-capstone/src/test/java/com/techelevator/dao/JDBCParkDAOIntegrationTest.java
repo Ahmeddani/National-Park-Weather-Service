@@ -1,4 +1,4 @@
-package com.techelevator;
+package com.techelevator.dao;
 
 import java.util.List;
 
@@ -6,6 +6,8 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.jdbc.core.JdbcTemplate;
+
+import com.techelevator.DAOIntegrationTest;
 import com.techelevator.dao.JDBCParkDao;
 import com.techelevator.model.Park;
 
