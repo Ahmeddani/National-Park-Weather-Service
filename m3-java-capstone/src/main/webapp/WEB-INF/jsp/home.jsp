@@ -14,10 +14,10 @@
 		
 		<div class="park">
 			 <div class="parkpic">
-			 	<a href= "${detailPageURL }"><img src = "img/parks/${park.parkCode}.jpg" id="park"/></a>
+			 	<a href= "${detailPageURL}"><img src = "img/parks/${park.parkCode}.jpg" id="park"/></a>
 			 </div>
 			 <div id="parkinfo">
-			 	<a href= "${detailPageURL }"><h3><c:out value="${park.parkName}"></c:out></h3></a>
+			 	<a href= "${detailPageURL}"><h3><c:out value="${park.parkName}"></c:out></h3></a>
 			 	<br>
 			 	<c:out value="${park.state}"></c:out>
 			 	<c:out value="${park.parkDescription}"></c:out>

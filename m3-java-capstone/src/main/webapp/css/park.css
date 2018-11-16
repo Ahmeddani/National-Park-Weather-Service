@@ -46,7 +46,7 @@ li a:hover {
 	text-decoration: underline;
 }
 
-#main-content {
+.main-content {
 	background-color: white;
 	color: black;
 	border-radius: 10px;
@@ -76,8 +76,51 @@ li a:hover {
 	margin: 20px;
 }
 
+.details {
+	padding: 50px;
+}
 
+.weather {
+	display: inline-flex;
+}
 
+.temps {
+	text-align: center;
+	padding:5px;
+}
+
+.todaypic{
+	width: 250px;
+	height:250px;
+}
+
+.otherDayPic {
+	width: 130px;
+	height: 130px;
+}
+.convert {
+	padding: 8px;
+	text-align: center;
+}
+#recommend {
+	text-align: left;
+}
+
+#surveyhead {
+	width:800px;
+	padding:10px;
+	margin: 18px;	
+}
+.listpic {
+	width:350px;
+	height:250px;
+	border-radius: 18px;
+	margin:20px;
+}
+#votes{
+	text-align: center;
+	padding:10px;
+}
 
 
 input,
