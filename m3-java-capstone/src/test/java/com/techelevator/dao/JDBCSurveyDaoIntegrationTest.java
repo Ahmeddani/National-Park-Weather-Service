@@ -37,6 +37,7 @@ public class JDBCSurveyDaoIntegrationTest extends DAOIntegrationTest{
 		jdbc.update(sql);
 		
 		Map<Park, Integer> favMap = new LinkedHashMap<Park, Integer>();
+		
 		try {
 			favMap = surveyDao.getFavoriteParksByNumberOfSurveys();
 		}catch(Exception e) {
@@ -48,7 +49,6 @@ public class JDBCSurveyDaoIntegrationTest extends DAOIntegrationTest{
 				Assert.assertTrue(favMap.get(park) >= 1);
 			}
 		}
-		
 	}
 	
 	@Test
@@ -57,7 +57,6 @@ public class JDBCSurveyDaoIntegrationTest extends DAOIntegrationTest{
 		String sqlSelect = "select count(*) from survey_result";
 		SqlRowSet result = jdbc.queryForRowSet(sqlSelect);
 		int oldSurvey = getSurveyCount(result);
-		
 		
 		Survey survey = new Survey();
 		survey.setParkCode("enp");
@@ -76,11 +75,9 @@ public class JDBCSurveyDaoIntegrationTest extends DAOIntegrationTest{
 	private int getSurveyCount(SqlRowSet result) {
 		Survey survey = new Survey();
 		while (result.next()) {
-			
 			survey.setSurveyCount(result.getInt("count"));
 		}
 		int surveyCount = survey.getSurveyCount();
 		return surveyCount;
 	}
-	
 }

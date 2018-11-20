@@ -37,8 +37,9 @@
 			<br>
 			<br>
 			<label for="state">State of Residence</label>
-				<form:input path="state" /> 
-				<form:errors path = "state" cssClass="error"/>
+			<form:select path="state">
+                  <form:options items="${stateList}"/>
+            </form:select>
 			<br>
 			<br>
 			<form:radiobutton path="activityLevel" value="inactive"/>Inactive
